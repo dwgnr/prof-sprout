@@ -1,0 +1,184 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Home"></Label>
+</ActionBar>
+
+<StackLayout *ngIf="isBusy" class="home-panel" style="margin-top:100">
+    <ActivityIndicator color="green" #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+</StackLayout>
+
+<StackLayout *ngIf="isError" class="home-panel" style="margin-top:100">
+    <Label class="h3 p-15 m-15 fa text-left" textWrap="true" style="text-align: center">
+        <FormattedString>
+            <Span [text]="errorMessage" color="#ee4035" fontAttributes="Bold"></Span>
+        </FormattedString>
+    </Label>
+    <Button text="Erneut Laden" (tap)="reload()" class="btn btn-primary"></Button>
+
+</StackLayout>
+
+
+
+<ScrollView class="page" *ngIf="!isBusy && !isError">
+        <StackLayout margin="0">
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="10">
+                <Label text="Bodenfeuchtigkeit" class="h3"></Label>
+            </StackLayout>
+
+        <StackLayout class="home-panel" height="600px" marginTop="-30" marginBottom="-40">
+            <RadRadialGauge title="% Bodenfeuchtigkeit">
+                <TitleStyle tkRadialGaugeTitleStyle textColor="gray" ios:textSize="12" ios:verticalOffset="30" android:verticalOffset="90"></TitleStyle>
+
+                <RadialScale tkRadialGaugeScales startAngle="135" sweepAngle="270" minimum="0" maximum="100" radius="0.6">
+                    <ScaleStyle tkRadialScaleStyle majorTicksCount="3" minorTicksCount="7"
+                                lineThickness="2" labelsOffset="0.17" lineColor="gray"
+                                labelsCount="11" ticksOffset="0"></ScaleStyle>
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="20" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#ee4035" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="20.05" maximum="40" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#f37736" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="40.05" maximum="50" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#fdf498" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="50.05" maximum="70" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#7bc043" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="70.05" maximum="100" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#0392cf" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+
+                    <RadialNeedle tkRadialScaleIndicators [value]="lastMoisture.value">
+                        <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
+                    </RadialNeedle>
+                </RadialScale>
+            </RadRadialGauge>
+        </StackLayout>
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5">
+                <Label text="Letzte Messung: " class="h4"></Label>
+                <Label [text]="lastMoisture.created_at" class="h4"></Label>
+                <Label text="  Uhr" class="h4"></Label>
+            </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="10">
+                <Label text="Luftfeuchtigkeit" class="h3"></Label>
+            </StackLayout>
+
+
+            <StackLayout class="home-panel" height="600px" marginTop="-30" marginBottom="-40">
+            <RadRadialGauge title="% Luftfeuchtigkeit">
+                <TitleStyle tkRadialGaugeTitleStyle textColor="gray" ios:textSize="12" ios:verticalOffset="30" android:verticalOffset="90"></TitleStyle>
+
+                <RadialScale tkRadialGaugeScales startAngle="135" sweepAngle="270" minimum="0" maximum="100" radius="0.6">
+                    <ScaleStyle tkRadialScaleStyle majorTicksCount="3" minorTicksCount="7"
+                                lineThickness="2" labelsOffset="0.17" lineColor="gray"
+                                labelsCount="11" ticksOffset="0"></ScaleStyle>
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="40" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#0392cf" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="40.05" maximum="60" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#7bc043" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="60.05" maximum="70" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#fdf498" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="70.05" maximum="80" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#f37736" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="80.05" maximum="100" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#ee4035" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialNeedle tkRadialScaleIndicators [value]="lastHumidity.value">
+                        <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
+                    </RadialNeedle>
+                </RadialScale>
+
+                <!--<RadialScale tkRadialGaugeScales minimum="93.2" maximum="104" radius="0.7">-->
+                <!--<ScaleStyle tkRadialScaleStyle majorTicksCount="7" minorTicksCount="20" lineThickness="2" labelsOffset="0.1" lineColor="gray"-->
+                <!--labelsCount="7" ticksOffset="0" labelsLayoutMode="Outer" ticksLayoutMode="Outer"></ScaleStyle>-->
+                <!--</RadialScale>-->
+            </RadRadialGauge>
+        </StackLayout>
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5">
+                <Label text="Letzte Messung: " class="h4"></Label>
+                <Label [text]="lastHumidity.created_at" class="h4"></Label>
+                <Label text="  Uhr" class="h4"></Label>
+            </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="10" marginBottom="7">
+                <Label text="Raumtemperatur" class="h3"></Label>
+            </StackLayout>
+
+
+        <StackLayout class="home-panel" height="600px" marginTop="-20" marginBottom="-40">
+            <RadRadialGauge title="Celsius" subtitle="Fahrenheit">
+                <TitleStyle tkRadialGaugeTitleStyle textColor="gray" ios:textSize="12" ios:verticalOffset="30" android:verticalOffset="90"></TitleStyle>
+                <SubtitleStyle tkRadialGaugeSubtitleStyle textColor="gray"></SubtitleStyle>
+
+                <RadialScale tkRadialGaugeScales startAngle="135" sweepAngle="270" minimum="-20" maximum="40" radius="0.6">
+                    <ScaleStyle tkRadialScaleStyle majorTicksCount="7" minorTicksCount="3" lineThickness="2"
+                                labelsOffset="0.17" lineColor="gray"
+                                labelsCount="7" ticksOffset="0"></ScaleStyle>
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="-20" maximum="10" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#0392cf" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="10.05" maximum="20" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#7bc043" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="20.05" maximum="30" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#f37736" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialBarIndicator tkRadialScaleIndicators minimum="30.05" maximum="40" location="0.69">
+                        <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#ee4035" barWidth="0.08"></BarIndicatorStyle>
+                    </RadialBarIndicator>
+
+                    <RadialNeedle tkRadialScaleIndicators [value]="lastTemperature.value">
+                        <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
+                    </RadialNeedle>
+                </RadialScale>
+
+                <RadialScale tkRadialGaugeScales minimum="-4" maximum="104" radius="0.7">
+                    <ScaleStyle tkRadialScaleStyle majorTicksCount="3" minorTicksCount="7"
+                                lineThickness="1" labelsOffset="0.17" lineColor="gray"
+                                labelsCount="7" ticksOffset="0" labelsLayoutMode="Outer" ticksLayoutMode="Outer"></ScaleStyle>
+                </RadialScale>
+            </RadRadialGauge>
+        </StackLayout>
+
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5" marginTop="10">
+                <Label text="Letzte Messung: " class="h4"></Label>
+                <Label [text]="lastTemperature.created_at" class="h4"></Label>
+                <Label text="  Uhr" class="h4"></Label>
+            </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+
+            <StackLayout>
+                <Button text="Pflanze jetzt gießen" (tap)="action()" class="btn btn-primary"></Button>
+                <Button text="Werte aktualisieren" (tap)="reload()" class="btn btn-primary"></Button>
+            </StackLayout>
+
+
+        </StackLayout>
+</ScrollView>
+
+

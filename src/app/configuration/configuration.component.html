@@ -1,0 +1,60 @@
+<ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Konfiguration"></Label>
+        <!--<Button text="Hilfe" (tap)="selectHelp()" class="action-bar-title"></Button>-->
+    <!--<GridLayout class="list-group-item" rows="*" columns="auto, *">-->
+        <!--<Label row="0" col="0" text="Konfiguration" class="action-bar-title" style="text-align: center" ></Label>-->
+        <!--<Button row="0" col="2" text="Hilfe" class="m-l-30 action-bar-title" style="text-align: right" (tap)="selectHelp()"></Button>-->
+    <!--</GridLayout>-->
+</ActionBar>
+
+<ScrollView class="page m-r-5 m-l-5">
+    <StackLayout class="home-panel form input-field">
+
+        <StackLayout orientation="horizontal" horizontalAlignment="right">
+            <Button text="Hilfe" (tap)="selectHelp()" class="btn btn-secondary"></Button>
+        </StackLayout>
+
+        <Label text="AIO Key" class="h3" marginTop="-5"></Label>
+        <TextField [(ngModel)]="aiokey" hint="Adafruit IO key..." class="input input-border"></TextField>
+
+        <Label text="AIO Nutzername" class="h3" marginTop="18"></Label>
+        <TextField [(ngModel)]="aiouser" hint="Adafruit IO Nutzername..." class="input input-border"></TextField>
+
+
+        <Label text="Grenzwert für Bodenfeuchtigkeit" class="h3" marginTop="18"></Label>
+        <StackLayout orientation="horizontal" horizontalAlignment="center">
+            <!-- THIS IS Looks better on IOS-->
+            <!--<Label [text]="humidityThresholdNum / 100 | percent:'1.0-0'"></Label>-->
+            <!--<Slider minValue="0" maxValue="100" [(ngModel)]="humidityThresholdNum"></Slider>-->
+
+            <!-- THIS looks better on ANDROID-->
+            <GridLayout rows="auto auto" columns="50 * 50">
+                <Label row="0" colSpan="3" [text]="humidityThresholdNum / 100 | percent:'1.0-0'"></Label>
+                <Label row="1" col="0" text="0" textWrap="true" fontSize="15"></Label>
+                <Slider row="1" col="1" value="20" [(ngModel)]="humidityThresholdNum" minValue="0" maxValue="100"></Slider>
+                <Label row="1" col="2" text="100" textWrap="true" fontSize="15"></Label>
+            </GridLayout>
+
+        </StackLayout>
+
+        <StackLayout orientation="horizontal" horizontalAlignment="center">
+        <Label text="Automatische Bewässerung" class="h3" marginTop="18"></Label>
+        <Switch checked="false" [(ngModel)]="autoWatering" class="switch"></Switch>
+        </StackLayout>
+        <StackLayout class="hr-light"></StackLayout>
+
+        <StackLayout orientation="horizontal" horizontalAlignment="center">
+            <Button text="Speichern" (tap)="saveConfig()" class="btn btn-primary"></Button>
+            <Button text="Einstellungen entfernen" (tap)="action()" class="btn btn-grey"></Button>
+        </StackLayout>
+
+        <StackLayout *ngIf="isError" marginTop="10">
+            <Label class="h3 p-15 m-15 fa text-left" textWrap="true" style="text-align: center">
+                <FormattedString>
+                    <Span [text]="errorMessage" color="#ee4035" fontAttributes="Bold"></Span>
+                </FormattedString>
+            </Label>
+        </StackLayout>
+
+    </StackLayout>
+</ScrollView>

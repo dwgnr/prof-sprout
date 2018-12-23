@@ -1,0 +1,38 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Hilfe"></Label>
+</ActionBar>
+<ScrollView class="page m-r-5 m-l-5">
+<StackLayout>
+    <!--<label class="h1 fa text-center" text="&#xf06c;" marginTop="5" marginBottom="10" textWrap="true"></label>-->
+    <label class="h1 fa text-center" text="Deine &#xf004;-Internetpflanze" marginTop="5" marginBottom="10"></label>
+    <label class="h2 fa text-center" text="Einrichtung" marginTop="5" marginBottom="15"></label>
+    <label class="h2 fa text-center" text="&#xf1eb;" marginTop="15"></label>
+    <label class="h3 fa text-center" text="WLAN" marginTop="5"  marginBottom="15"></label>
+    <Label text="Versorge Deine IOT-Pflanze zunächst mit Strom. Wenn sich kein bekanntes WLAN in der Nähe befindet, wird automatisch ein AccessPoint mit der Bezeichnung 'SproutAP' bereitgestellt.
+Dieser sollte in den verfügbaren WLAN-Verbindungen zu sehen sein.
+Verbinde Dich mit 'SproutAP' und gib das Passwort für den AccessPoint ein. Klicke auf das Feld 'Configure Wifi'. Der AccessPoint scannt nun verfügbare Wifi-Netzwerke.
+Wähle Dein WLAN aus und gib das WLAN-Passwort in das Passwortfeld ein. Mit einem Klick auf das Feld 'save' versucht sich Deine IOT-Pflanze nun automatisch mit dem WLAN zu verbinden.
+Wenn keine Verbindung möglich ist, wird erneut ein AccessPoint zur Verfügung gestellt.
+Die Einrichtung des WLANs auf diese Art ist natürlich nur einmal nötig. Solange sich die Bezeichnung (SSID) oder das Passwort nicht ändern, verbindet sich Deine IOT-Pflanze in Zukunft automatisch."
+           textWrap="true"></Label>
+
+    <StackLayout marginTop="15" class="hr-light"></StackLayout>
+    <label class="h2 fa text-center" text="&#xf10b;" marginTop="15"></label>
+    <label class="h3 fa text-center" text="App" marginTop="5" marginBottom="15"></label>
+        <Label text="Melde Dich mit Deinen Zugangsdaten bei: "
+               textWrap="true"></Label>
+        <Button class="btn btn-secondary" text="https://io.adafruit.com/" (tap)="onTap()"></Button>
+        <Label text="an und klicke auf 'View AIO Key'. Kopiere den Key und den Benutzernamen in die entsprechenden Felder des Konfigurationsmenüs Deiner ProfSprout-App.
+Drücke anschließend auf den Button 'Speichern'. Die App ist nun mit Deiner IOT-Pflanze verbunden und kann Daten abfragen. Yay!"
+               textWrap="true"></Label>
+
+
+    <StackLayout marginTop="15" class="hr-light"></StackLayout>
+    <label class="h2 fa text-center" text="&#xf043;" marginTop="15"></label>
+    <label class="h3 fa text-center" text="Automatische Bewässerung" marginTop="5" marginBottom="15"></label>
+    <Label marginBottom="5" text="Mit dem Slider lässt sich eine Untergrenze für die Bodenfeuchtigkeit Deiner Pflanze einstellen.
+Wird zusätzlich die automatische Bewässerung aktiviert, schaltet sich die Wasserpumpe stets bei Erkennung einer Unterschreitung der Feuchtigkeitsgrenze ein und bewässert Deine Pflanze."
+           textWrap="true"></Label>
+
+</StackLayout>
+</ScrollView>

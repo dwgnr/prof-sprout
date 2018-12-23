@@ -1,0 +1,41 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Raumtemperatur"></Label>
+</ActionBar>
+
+<StackLayout *ngIf="isBusy" class="home-panel" style="margin-top:100">
+    <ActivityIndicator color="green" #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+</StackLayout>
+
+<StackLayout *ngIf="isError" class="home-panel" marginTop="100">
+    <Label class="h3 p-15 m-15 fa text-left" textWrap="true" style="text-align: center">
+        <FormattedString>
+            <Span [text]="errorMessage" color="#ee4035" fontAttributes="Bold"></Span>
+        </FormattedString>
+    </Label>
+    <Button text="Erneut Laden" (tap)="reload()" class="btn btn-primary"></Button>
+
+</StackLayout>
+
+
+<ScrollView class="page" *ngIf="!isBusy && !isError">
+    <StackLayout>
+        <GridLayout rows="auto, *" style="height: 1000px;">
+            <RadCartesianChart row="0" id="cartesianChart" style="height: 100%">
+                <DateTimeContinuousAxis tkCartesianHorizontalAxis [minimum]="minDate" [maximum]="maxDate"
+                                        [majorStep]="stepSize" [dateFormat]=displayDateFormat
+                                        labelFitMode="Rotate" labelRotationAngle="1.2" allowPan="true" allowZoom="true">
+
+                </DateTimeContinuousAxis>
+                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+
+                <LineSeries tkCartesianSeries seriesName="Line" [items]="chartData" categoryProperty="date"
+                            valueProperty="value"></LineSeries>
+
+                <Palette tkCartesianPalette seriesName="Line">
+                    <PaletteEntry tkCartesianPaletteEntry strokeColor="#7bc043" strokeWidth="2"></PaletteEntry>
+                </Palette>
+            </RadCartesianChart>
+        </GridLayout>
+        <Button class="btn btn-primary" text="Zeitraum" (tap)="action()"></Button>
+    </StackLayout>
+</ScrollView>
