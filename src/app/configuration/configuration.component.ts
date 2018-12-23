@@ -30,6 +30,8 @@ export class ConfigurationComponent implements OnInit {
 
     ngOnInit(): void {
 
+        // TODO: Maybe pull current settings from adafruit as well
+
         this.errorService.currentMessage.subscribe((message) => this.errorMessage = message);
 
         this.aiouser = appSettings.getString("aiouserString", "default");
