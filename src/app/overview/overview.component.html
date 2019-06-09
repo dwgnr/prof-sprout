@@ -1,0 +1,78 @@
+<ActionBar class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    </NavigationButton>
+    <Label class="action-bar-title" text="Home" horizontalAlignment="center"></Label>
+    <ActionItem ios.position="right" android.position="right" (tap)="onAddButtonTap()">
+        <Label text="&#xf067;" class="fa-head action-item"></Label>
+    </ActionItem>
+</ActionBar>
+
+
+<GridLayout class="page page-content">
+<RadListView *ngIf="!isError" [items]="plants" (itemTap)="onPlantItemTap($event)" class="list-group">
+    <!--
+    RadListView is a UI component part of the Progress NativeScript UI set of components.
+    Learn more about the RadListView UI component and how it can be customized in this documentation article:
+    https://docs.nativescript.org/angular/ui/professional-ui-components/ng-ListView/getting-started
+    This component is used to display the master list in the master-detail structure.
+    -->
+    <ng-template tkListItemTemplate let-plant="item">
+        <StackLayout class="list-group-item">
+            <GridLayout rows="*, *, *" columns="*, *" class="list-group-item-content">
+                <Label [text]="plant.name" class="text-primary font-weight-bold"></Label>
+                <Label col="1" horizontalAlignment="right" class="list-group-item-text m-r-5">
+                    <FormattedString>
+                        <Span [text]="plant.healthState"></Span>
+                    </FormattedString>
+                </Label>
+
+                <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
+
+                <Image row="2" [src]="plant.imageUrl" stretch="aspectFit" height="120" class="m-r-20"></Image>
+                <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
+                    <Label class="p-b-10">
+                        <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf2c9;   " class="fa text-primary"></Span>
+                            <Span [text]="plant.temperature"></Span>
+                            <Span text="&#x2103; (Zimmer)"></Span>
+                        </FormattedString>
+                    </Label>
+                    <Label class="p-b-10">
+                        <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf0c2;   " class="fa text-primary"></Span>
+                            <Span [text]="plant.humidity"></Span>
+                            <Span text="% (Luft)"></Span>
+                        </FormattedString>
+                    </Label>
+                    <Label>
+                        <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf06c;   " class="fa text-primary"></Span>
+                            <Span [text]="plant.moisture"></Span>
+                            <Span text="% (Boden)"></Span>
+                        </FormattedString>
+                    </Label>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+    </ng-template>
+</RadListView>
+
+
+    <StackLayout *ngIf="isBusy" class="home-panel" style="margin-top:100">
+        <ActivityIndicator color="green" #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+    </StackLayout>
+
+    <StackLayout *ngIf="isError" class="home-panel" style="margin-top:100">
+        <Label class="h3 p-15 m-15 fa text-left" textWrap="true" style="text-align: center">
+            <FormattedString>
+                <Span [text]="errorMessage" color="#ee4035" fontAttributes="Bold"></Span>
+            </FormattedString>
+        </Label>
+        <Button text="Erneut Laden" (tap)="reload()" class="btn btn-primary"></Button>
+
+    </StackLayout>
+
+</GridLayout>

@@ -29,6 +29,7 @@
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-chart": "^3.10.0",
     "nativescript-ui-gauge": "^3.7.1",
+    "nativescript-ui-listview": "^6.3.2",
     "reflect-metadata": "~0.1.10",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.2.0",

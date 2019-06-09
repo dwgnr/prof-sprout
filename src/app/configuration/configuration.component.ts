@@ -34,8 +34,8 @@ export class ConfigurationComponent implements OnInit {
 
         this.errorService.currentMessage.subscribe((message) => this.errorMessage = message);
 
-        this.aiouser = appSettings.getString("aiouserString", "default");
-        this.aiokey = appSettings.getString("aiokeyString", "default");
+        this.aiouser = appSettings.getString("aiouserString", "");
+        this.aiokey = appSettings.getString("aiokeyString", "");
         const num = appSettings.getNumber("threshNumber", 0);
         // this.humidityThreshold = num === 0 ? "" : num.toString();
         this.humidityThresholdNum = num;
