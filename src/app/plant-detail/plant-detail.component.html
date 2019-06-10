@@ -10,9 +10,11 @@
 <GridLayout class="page page-content">
     <ScrollView>
         <GridLayout rows="auto, auto, auto">
-            <Image [src]="plant.imageUrl" stretch="aspectFit" height="110" class="m-b-5 m-t-10"></Image>
+            <StackLayout orientation="horizontal" horizontalAlignment="center" class="anim-images">
+            <Image class="card-img-thumb" [src]="plant.imageUrl" stretch="aspectFit" height="110" class="m-b-5 m-t-10"></Image>
+            </StackLayout>
 
-            <StackLayout row="1" class="hr-light m-t-5 m-b-15"></StackLayout>
+            <StackLayout row="1" class="hr-light m-t-0 m-b-15"></StackLayout>
 
             <GridLayout row="2" rows="*,*,*,*,*,*" columns="auto, auto">
 
@@ -86,7 +88,7 @@
                             <RadialBarIndicator tkRadialScaleIndicators minimum="70.05" maximum="100" location="0.69">
                                 <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#0392cf" barWidth="0.08"></BarIndicatorStyle>
                             </RadialBarIndicator>
-                            <RadialNeedle tkRadialScaleIndicators [value]="plant.moisture">
+                            <RadialNeedle tkRadialScaleIndicators [value]="lastMoisture">
                                 <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
                             </RadialNeedle>
                         </RadialScale>
@@ -94,7 +96,7 @@
                 </StackLayout>
                 <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5">
                     <Label text="Letzte Messung: " class="h4"></Label>
-                    <Label [text]="plant.timeMoisture" class="h4"></Label>
+                    <Label [text]="lastMoistureDate" class="h4"></Label>
                     <Label text="  Uhr" class="h4"></Label>
                 </StackLayout>
                 <StackLayout class="hr-light"></StackLayout>
@@ -133,7 +135,7 @@
                                 <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#ee4035" barWidth="0.08"></BarIndicatorStyle>
                             </RadialBarIndicator>
 
-                            <RadialNeedle tkRadialScaleIndicators [value]="plant.humidity">
+                            <RadialNeedle tkRadialScaleIndicators [value]="lastHumidity">
                                 <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
                             </RadialNeedle>
                         </RadialScale>
@@ -142,7 +144,7 @@
 
                 <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5">
                     <Label text="Letzte Messung: " class="h4"></Label>
-                    <Label [text]="plant.timeHumidity" class="h4"></Label>
+                    <Label [text]="lastHumidityDate" class="h4"></Label>
                     <Label text="  Uhr" class="h4"></Label>
                 </StackLayout>
                 <StackLayout class="hr-light"></StackLayout>
@@ -178,7 +180,7 @@
                                 <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#ee4035" barWidth="0.08"></BarIndicatorStyle>
                             </RadialBarIndicator>
 
-                            <RadialNeedle tkRadialScaleIndicators [value]="plant.temperature">
+                            <RadialNeedle tkRadialScaleIndicators [value]="lastTemperature">
                                 <NeedleStyle tkRadialNeedleStyle fillColor="#0392cf" length="0.5" android:topWidth="8" ios:topWidth="3" android:bottomWidth="8" ios:bottomWidth="3"></NeedleStyle>
                             </RadialNeedle>
                         </RadialScale>
@@ -193,7 +195,7 @@
 
                 <StackLayout orientation="horizontal" horizontalAlignment="center" marginBottom="5" marginTop="10">
                     <Label text="Letzte Messung: " class="h4"></Label>
-                    <Label [text]="plant.timeTemperature" class="h4"></Label>
+                    <Label [text]="lastTemperatureDate" class="h4"></Label>
                     <Label text="  Uhr" class="h4"></Label>
                 </StackLayout>
                 <StackLayout class="hr-light"></StackLayout>

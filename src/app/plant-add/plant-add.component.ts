@@ -1,19 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ListPicker } from "tns-core-modules/ui/list-picker";
 import { alert } from "../../../node_modules/tns-core-modules/ui/dialogs";
+import * as plantsJSON from "../plants.json";
 
 const plantSpecies = ["Sansevieria", "Elefantenfuß", "Efeutute", "Gummibaum", "Mimose",
     "Schusterpalme", "Drachenbaum", "Ufopflanze", "Sukkulente", "Kaktus", "Palme"];
 
 const plantAges = ["Jung", "Baby", "Mittelalt", "Alt", "Steinalt"];
-
-const imageURLs = [
-    "res://plants/Pflanze_1.png",
-    "res://plants/Pflanze_2.png",
-    "res://plants/Pflanze_3.png",
-    "res://plants/Pflanze_4.png",
-    "res://plants/Pflanze_5.png"
-];
 
 @Component({
   selector: "ns-plant-add",
@@ -26,6 +19,16 @@ export class PlantAddComponent implements OnInit {
   age: string = "";
   name: string = "";
   kind: string = "";
+  imageURLs = [
+      "res://pastelPlants/5.png",
+      "res://plants/Pflanze_2.png",
+      "res://plants/Pflanze_3.png",
+      "res://pastelPlants/6.png",
+      "res://plants/Pflanze_4.png",
+      "res://pastelPlants/7.png",
+      "res://plants/Pflanze_5.png",
+      "res://pastelPlants/8.png"
+    ];
 
   species: Array<string> = [];
   ages: Array<string> = [];
@@ -57,9 +60,9 @@ export class PlantAddComponent implements OnInit {
 
   savePlant() {
       if (this.name.length > 0) {
-          alert("Hurra! Deine neue Pflanze " + this.name + " wurde hinzugefügt!");
+          alert("🎉 Hurra!\nDeine neue Pflanze " + this.name + " wurde hinzugefügt!");
       } else {
-          alert("Etwas ist schiefgelaufen. Die Pflanze konnte nicht hinzugefügt werden.");
+          alert("😢\nEtwas ist schiefgelaufen. Die Pflanze konnte nicht hinzugefügt werden.");
       }
     }
 

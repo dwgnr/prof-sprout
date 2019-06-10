@@ -2,8 +2,22 @@
     <Label class="action-bar-title" text="Pflanze Hinzufügen"></Label>
 </ActionBar>
 
-<ScrollView class="page m-r-5 m-l-5">
-    <StackLayout class="home-panel form input-field">
+<StackLayout class="main" verticalAlignment="top" marginTop="25">
+
+
+
+    <ScrollView class="anim-images" orientation="horizontal">
+        <StackLayout orientation="horizontal" class="">
+            <GridLayout *ngFor="let imageString of imageURLs" rows="auto"
+                        columns="*">
+                <Image class="card-img-thumb" row="0" col="0" [src]="imageString"
+                       stretch="aspectFill"></Image>
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+
+    <ScrollView class="page m-r-5 m-l-5">
+    <StackLayout class="home-panel form input-field" marginTop="25">
 
         <Label text="Name" class="text-secondary font-weight-bold" marginTop="5"></Label>
         <TextField [(ngModel)]="name" hint="Name der Pflanze..." class="input input-border"></TextField>
@@ -18,3 +32,6 @@
 
     </StackLayout>
 </ScrollView>
+
+
+</StackLayout>

@@ -17,14 +17,18 @@ const moment = require("moment");
 })
 export class PlantDetailComponent implements OnInit {
 
-    // lastHumidity: any;
-    // lastTemperature: any;
-    // lastMoisture: any;
+    lastHumidity: any;
+    lastTemperature: any;
+    lastMoisture: any;
+    lastHumidityDate: any;
+    lastTemperatureDate: any;
+    lastMoistureDate: any;
+
     isBusy = true;
     isError = false;
     requestCompleteCount = 0;
     errorMessage = "";
-    _plant: Plant;
+    plant: Plant;
     recommendations = [];
     _recommend: any;
 
@@ -35,13 +39,31 @@ export class PlantDetailComponent implements OnInit {
 
     ngOnInit(): void {
 
+        this.dataService.getAllData().then((data) => {
+
+            // const p = this.plant;
+            let tmp = this.parseValue(data.moisture);
+
+            this.lastMoisture = tmp.value;
+            this.lastMoistureDate = tmp.created_at;
+
+            tmp = this.parseValue(data.humidity);
+            this.lastHumidity = tmp.value;
+            this.lastHumidityDate = tmp.created_at;
+
+            tmp = this.parseValue(data.temperature);
+            this.lastTemperature = tmp.value;
+            this.lastTemperatureDate = tmp.created_at;
+            console.log("INIT LAST TEMPERATURE " + this.lastTemperature + " " + this.lastTemperatureDate);
+        }).catch((error) => this.handleError(error));
+
         this.loadRecommendationsFromJSON();
         this._pageRoute.activatedRoute
             .pipe(switchMap((activatedRoute) => activatedRoute.queryParams))
             .forEach((params: Plant) => {
                 console.log("++++++++++++++ QUERY PARAMS ++++++++++++");
                 console.log(JSON.stringify(params));
-                this._plant = params;
+                this.plant = params;
             });
 
         if (Number(this.plant.recommendation) === 7) {
@@ -92,21 +114,25 @@ export class PlantDetailComponent implements OnInit {
 
         this.dataService.getAllData().then((data) => {
 
-          const p = this.plant;
+          // const p = this.plant;
           let tmp = this.parseValue(data.moisture);
 
-          p.moisture = tmp.value;
-          p.timeMoisture = tmp.created_at;
+          this.lastMoisture = tmp.value;
+          this.lastMoistureDate = tmp.created_at;
 
           tmp = this.parseValue(data.humidity);
-          p.moisture = tmp.value;
-          p.timeMoisture = tmp.created_at;
+          this.lastHumidity = tmp.value;
+          this.lastHumidityDate = tmp.created_at;
 
           tmp = this.parseValue(data.temperature);
-          p.moisture = tmp.value;
-          p.timeMoisture = tmp.created_at;
+          this.lastTemperature = tmp.value;
+          this.lastTemperatureDate = tmp.created_at;
+          console.log("RELOAD LAST TEMPERATURE " + this.lastTemperature + " " + this.lastTemperatureDate);
 
-          this.plant = p;
+          // const plant = new Plant(this.plant.id, p.name, this.lastTemperature, this.lastHumidity, this.lastMoisture,
+          //       p.family, p.age, p.healthState, p.imageUrl, this.lastMoistureDate,
+          //       this.lastHumidityDate, this.lastTemperatureDate,
+          //       p.recommendation);
 
         }).catch((error) => this.handleError(error));
     }
@@ -162,13 +188,13 @@ export class PlantDetailComponent implements OnInit {
 
     }
 
-    get plant(): Plant {
-        return this._plant;
-    }
-
-    set plant(newPlant: Plant) {
-            this._plant = newPlant;
-    }
+    // get plant(): any {
+    //     return this._plant;
+    // }
+    //
+    // set plant(newPlant: Plant) {
+    //         this._plant = newPlant;
+    // }
 
     get recommend(): any {
         return this._recommend;

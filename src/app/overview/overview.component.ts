@@ -97,8 +97,9 @@ export class OverviewComponent implements OnInit {
 
     loadPlantsFromJSON() {
         for (const p of plantsJSON.plants) {
-            const plant = new Plant(p.id, p.name, p.temperature, p.humidity, p.moisture,
-                p.family, p.age, p.healthState, p.imageUrl, p.timeMoisture, p.timeHumidity, p.timeTemperature,
+            const plant = new Plant(p.id, p.name, this.lastTemperature, this.lastHumidity, this.lastMoisture,
+                p.family, p.age, p.healthState, p.imageUrl, this.lastMoistureDate,
+                this.lastHumidityDate, this.lastTemperatureDate,
                 p.recommendation);
             this._plants.push(plant);
         }
