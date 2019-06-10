@@ -4,6 +4,7 @@ import { ListViewEventData } from "nativescript-ui-listview";
 import { DataService } from "~/app/core/data.service";
 import { ErrorService } from "~/app/core/error.service";
 import { Plant } from "~/app/models/plant.model";
+import * as plantsJSON from "../plants.json";
 
 const moment = require("moment");
 
@@ -28,8 +29,13 @@ export class OverviewComponent implements OnInit {
 
     states = ["😄", "😊", "😊", "😊", "😊", "😐", "😟", "😢"];
 
+    ages = ["Jung", "Baby", "Mittelalt", "Alt", "Steinalt"];
+
     names = ["Alois", "Bertl", "Done", "Wastl", "Sepperl",
         "Hias", "Hilde", "Bärbl", "Kathl", "Lisbeth", "Susi", "Wally"];
+
+    plantSpecies = ["Sansevieria", "Elefantenfuß", "Efeutute", "Gummibaum", "Mimose",
+        "Schusterpalme", "Drachenbaum", "Ufopflanze", "Sukkulente", "Kaktus", "Palme"];
 
     // images = ["https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-philo.jpg",
     //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-cactus.jpg",
@@ -59,6 +65,7 @@ export class OverviewComponent implements OnInit {
     }
 
     ngOnInit() {
+
         this.errorService.currentMessage.subscribe((message) => this.errorMessage = message);
 
         // this.dataService.createPlants(10)
@@ -83,8 +90,18 @@ export class OverviewComponent implements OnInit {
             this.lastTemperature = tmp.value;
             this.lastTemperatureDate = tmp.created_at;
 
-            this.createPlants(10);
+            // this.createPlants(10);
+            this.loadPlantsFromJSON();
             }).catch((error) => this.handleError(error));
+    }
+
+    loadPlantsFromJSON() {
+        for (const p of plantsJSON.plants) {
+            const plant = new Plant(p.id, p.name, p.temperature, p.humidity, p.moisture,
+                p.family, p.age, p.healthState, p.imageUrl, p.timeMoisture, p.timeHumidity, p.timeTemperature,
+                p.recommendation);
+            this._plants.push(plant);
+        }
     }
 
     createPlants(N: number) {
@@ -94,12 +111,16 @@ export class OverviewComponent implements OnInit {
 
                 const stateItem = this.states[Math.floor(Math.random() * this.states.length)];
                 const img = this.images[Math.floor(Math.random() * this.images.length)];
+                const species = this.plantSpecies[Math.floor(Math.random() * this.plantSpecies.length)];
+                const age = this.ages[Math.floor(Math.random() * this.ages.length)];
 
                 const p = new Plant(i, this.names[i],
                     this.lastTemperature, this.lastHumidity, this.lastMoisture,
-                    "Palme", 200, stateItem, img,
-                    this.lastMoistureDate, this.lastHumidityDate, this.lastTemperatureDate);
+                    species, age, stateItem, img,
+                    this.lastMoistureDate, this.lastHumidityDate, this.lastTemperatureDate, 7);
                 this._plants.push(p);
+                console.log("");
+                console.log(JSON.stringify(p));
             }
             console.log("CREATED PLANTS ARRAY WITH LENGTH: " + this._plants.length);
         }
@@ -120,7 +141,7 @@ export class OverviewComponent implements OnInit {
             this.lastTemperature = tmp.value;
             this.lastTemperatureDate = tmp.created_at;
 
-            this.createPlants(10);
+            this.loadPlantsFromJSON();
         }).catch((error) => this.handleError(error));
     }
 

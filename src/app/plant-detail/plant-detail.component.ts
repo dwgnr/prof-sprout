@@ -6,7 +6,7 @@ import { ErrorService } from "~/app/core/error.service";
 import { IBasicPost } from "~/app/models/basicPost.model";
 import { Plant } from "~/app/models/plant.model";
 import { action, alert } from "../../../node_modules/tns-core-modules/ui/dialogs";
-
+import * as plantsJSON from "../plants.json";
 const moment = require("moment");
 
 @Component({
@@ -25,6 +25,8 @@ export class PlantDetailComponent implements OnInit {
     requestCompleteCount = 0;
     errorMessage = "";
     _plant: Plant;
+    recommendations = [];
+    _recommend: any;
 
     constructor(private _pageRoute: PageRoute,
                 private _routerExtensions: RouterExtensions,
@@ -33,6 +35,7 @@ export class PlantDetailComponent implements OnInit {
 
     ngOnInit(): void {
 
+        this.loadRecommendationsFromJSON();
         this._pageRoute.activatedRoute
             .pipe(switchMap((activatedRoute) => activatedRoute.queryParams))
             .forEach((params: Plant) => {
@@ -40,6 +43,18 @@ export class PlantDetailComponent implements OnInit {
                 console.log(JSON.stringify(params));
                 this._plant = params;
             });
+
+        if (Number(this.plant.recommendation) === 7) {
+            this._recommend = {reco: this.recommendations[7], color: "#7bc043"};
+        } else {
+            this._recommend = {reco: this.recommendations[this.plant.recommendation], color: "#ee4035"};
+        }
+    }
+
+    loadRecommendationsFromJSON() {
+        for (const r of plantsJSON.recommendations) {
+            this.recommendations.push(r);
+        }
     }
 
     action() {
@@ -92,7 +107,6 @@ export class PlantDetailComponent implements OnInit {
           p.timeMoisture = tmp.created_at;
 
           this.plant = p;
-
 
         }).catch((error) => this.handleError(error));
     }
@@ -154,6 +168,10 @@ export class PlantDetailComponent implements OnInit {
 
     set plant(newPlant: Plant) {
             this._plant = newPlant;
+    }
+
+    get recommend(): any {
+        return this._recommend;
     }
 
 }

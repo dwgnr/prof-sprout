@@ -5,14 +5,14 @@
 <ScrollView class="page m-r-5 m-l-5">
     <StackLayout class="home-panel form input-field">
 
-        <Label text="Name" class="h2" marginTop="5"></Label>
+        <Label text="Name" class="text-secondary font-weight-bold" marginTop="5"></Label>
         <TextField [(ngModel)]="name" hint="Name der Pflanze..." class="input input-border"></TextField>
 
-        <Label text="Art" class="h2" marginTop="5" marginBottom="-40"></Label>
+        <Label text="Art" class="text-secondary font-weight-bold" marginTop="5" marginBottom="-40"></Label>
         <ListPicker [items]="species" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)" class="p-15"></ListPicker>
 
-        <Label text="Alter" class="h2" marginTop="5" marginBottom="-40"></Label>
-        <ListPicker [items]="species" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)" class="p-15"></ListPicker>
+        <Label text="Alter" class="text-secondary font-weight-bold" marginTop="5" marginBottom="-40"></Label>
+        <ListPicker [items]="ages" selectedIndex="0" (selectedIndexChange)="selectedIndexChangedAge($event)" class="p-15"></ListPicker>
 
         <Button text="Speichern" (tap)="savePlant()" class="btn btn-primary"></Button>
 

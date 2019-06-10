@@ -1,31 +1,85 @@
+<!--<ActionBar class="action-bar">-->
+    <!--<Label class="action-bar-title" text="Historie"></Label>-->
+<!--</ActionBar>-->
+
 <ActionBar class="action-bar">
-    <Label class="action-bar-title" text="Historie"></Label>
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    </NavigationButton>
+    <Label class="action-bar-title" text="Historie" horizontalAlignment="center"></Label>
 </ActionBar>
 
 <!-- The [columns] bit here makes this app a two-column layout on tablets, and a one-column layout on phones -->
-<GridLayout [columns]="isTablet ? '*, 2*' : '*'">
-    <GridLayout col="0" class="left-column">
+<!--<GridLayout [columns]="isTablet ? '*, 2*' : '*'">-->
+    <!--<GridLayout col="0" class="left-column">-->
 
-        <!-- The ListView shows on both tablets and phones. On tablets the list occupies the left-hand side
-        of the screen, and one phones the ListView takes up the whole screen. -->
-        <ListView class="list-group" [items]="data" (itemTap)="select($event)">
-            <ng-template let-item="item">
-                <GridLayout class="list-group-item" rows="*" columns="auto, *">
-                    <Label row="0" col="0" [text]="item.src" class="fa h2"></Label>
-                    <Label row="0" col="1" [text]="item.name" class="h2" style="text-align: center"></Label>
+        <!--&lt;!&ndash; The ListView shows on both tablets and phones. On tablets the list occupies the left-hand side-->
+        <!--of the screen, and one phones the ListView takes up the whole screen. &ndash;&gt;-->
+        <!--<ListView class="list-group" [items]="data" (itemTap)="select($event)">-->
+            <!--<ng-template let-item="item">-->
+                <!--<GridLayout class="list-group-item" rows="*" columns="auto, *">-->
+                    <!--<Label row="0" col="0" [text]="item.src" class="fa h2"></Label>-->
+                    <!--<Label row="0" col="1" [text]="item.name" class="h2" style="text-align: center"></Label>-->
+                <!--</GridLayout>-->
+            <!--</ng-template>-->
+        <!--</ListView>-->
+    <!--</GridLayout>-->
+<!--</GridLayout>-->
+
+
+<GridLayout class="page page-content history-panel">
+    <RadListView *ngIf="!isError" [items]="plants" class="list-group">
+        <ng-template tkListItemTemplate let-plant="item">
+            <StackLayout class="list-group-item">
+                <GridLayout rows="*, *, *" columns="*, *" class="list-group-item-content">
+                    <Label [text]="plant.name" class="text-primary font-weight-bold"></Label>
+                    <Label col="1" horizontalAlignment="right" class="list-group-item-text m-r-5">
+                        <FormattedString>
+                            <Span text="&#xf201;   " class="fa text-primary"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
+
+                    <Image row="2" [src]="plant.imageUrl" stretch="aspectFit" height="120" class="m-r-20"></Image>
+                    <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
+                        <Label class="p-b-10" (tap)="selectChart('temp')">
+                            <FormattedString ios:fontFamily="system">
+                                <Span text="&#xf2c9;   " class="fa text-primary"></Span>
+                                <Span text="Raumtemperatur"></Span>
+                            </FormattedString>
+                        </Label>
+
+                        <Label class="p-b-10" (tap)="selectChart('hum')" >
+                            <FormattedString ios:fontFamily="system">
+                                <Span text="&#xf0c2;   " class="fa text-primary"></Span>
+                                <Span text="Luftfeuchtigkeit"></Span>
+                            </FormattedString>
+                        </Label>
+                        <Label (tap)="selectChart('moist')">
+                            <FormattedString ios:fontFamily="system">
+                                <Span text="&#xf06c;   " class="fa text-primary"></Span>
+                                <Span text="Bodenfeuchtigkeit"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
                 </GridLayout>
-            </ng-template>
-        </ListView>
-    </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
 
-    <!-- The markup below is duplicated in detail/detail.component.html. You might want to abstract this bit
-    of code into a shared component, or you may wish to keep the implementations separate so you have the
-    ability to customize the markup based on whether the user is on a phone or tablet. The markup below
-    is the UI that tablet users see, and the markup in detail/detail.component.html is the markup that
-    phone users see. -->
-    <!--<StackLayout col="1" class="p-20" *ngIf="isTablet">-->
-        <!--<Label class="fa h1 m-b-10" [text]="selected.src"></Label>-->
-        <!--<Label class="h2" textWrap="true" [text]="selected.name"></Label>-->
-    <!--</StackLayout>-->
+
+    <StackLayout *ngIf="isBusy" class="history-panel" style="margin-top:100">
+        <ActivityIndicator color="green" #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+    </StackLayout>
+
+    <StackLayout *ngIf="isError" class="history-panel" style="margin-top:100">
+        <Label class="h3 p-15 m-15 fa text-left" textWrap="true" style="text-align: center">
+            <FormattedString>
+                <Span [text]="errorMessage" color="#ee4035" fontAttributes="Bold"></Span>
+            </FormattedString>
+        </Label>
+        <Button text="Erneut Laden" (tap)="reload()" class="btn btn-primary"></Button>
+    </StackLayout>
+
 </GridLayout>
 

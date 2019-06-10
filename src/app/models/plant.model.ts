@@ -4,7 +4,8 @@ export class Plant {
     imageUrl: string;
     family: string;
     healthState: string;
-    age: number;
+    age: string;
+    recommendation: number;
     temperature: number;
     humidity: number;
     moisture: number;
@@ -13,12 +14,12 @@ export class Plant {
     timeTemperature: any;
 
     constructor(id, name, temperature, humidity, moisture, family, age, healthState, imageUrl,
-                timeMoisture, timeHumidity, timeTemperature) {
+                timeMoisture, timeHumidity, timeTemperature, recommendation) {
         this.id = id;
         this.name = name;
         this.family = family;
         this.healthState = healthState;
-        this.age = Number(age);
+        this.age = age;
         this.moisture = Number(moisture);
         this.humidity = Number(humidity);
         this.temperature = Number(temperature);
@@ -26,5 +27,6 @@ export class Plant {
         this.timeMoisture = timeMoisture;
         this.timeHumidity = timeHumidity;
         this.timeTemperature = timeTemperature;
+        this.recommendation = Number(recommendation);
     }
 }

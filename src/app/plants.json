@@ -1,0 +1,18 @@
+{
+  "plants": [
+    {"id":0,"name":"Alois","family":"Mimose","healthState":"😊", "recommendation":7, "age":"Jung","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/5.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":1,"name":"Bertl","family":"Sukkulente","healthState":"😊","recommendation":7,"age":"Steinalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/6.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":2,"name":"Bärbl","family":"Schusterpalme","healthState":"😢🌡️❄️","recommendation":6,"age":"Steinalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://plants/Pflanze_3.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":3,"name":"Done","family":"Kaktus","healthState":"😟🌧️","age":"Jung","recommendation":1,"moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/5.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":4,"name":"Wastl","family":"Schusterpalme","healthState":"😊","recommendation":7,"age":"Mittelalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/7.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":5,"name":"Sepperl","family":"Ufopflanze","healthState":"😊","recommendation":7,"age":"Baby","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/8.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":6,"name":"Hias","family":"Ufopflanze","healthState":"😟🌧️","recommendation":1,"age":"Mittelalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/7.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":7,"name":"Hilde","family":"Ufopflanze","healthState":"😄","recommendation":7,"age":"Mittelalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://pastelPlants/6.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":8,"name":"Kathl","family":"Kaktus","healthState":"😊","recommendation":7,"age":"Alt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://plants/Pflanze_5.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"},
+    {"id":9,"name":"Lisbeth","family":"Efeutute","healthState":"😢🌡️🔥","recommendation":5,"age":"Steinalt","moisture":0,"humidity":50,"temperature":25.7,"imageUrl":"res://plants/Pflanze_4.png","timeMoisture":"10 Juni 2019 10:11","timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"}
+  ],
+  "recommendations": ["Sofort gießen", "Zeitnah gießen",
+  "Bald gießen", "Luftfeuchtigkeit erhöhen",
+  "Luftfeuchtigkeit senken", "An kühleren Ort stellen",
+  "An wärmeren Ort stellen", "Alles wie gehabt"]
+}
