@@ -11,4 +11,5 @@
     - Build type: local
     - Build configuration: Release
     - Build typWebpacke: Yes (Checked)
+- Press "Run on device" in Sidekick
  
