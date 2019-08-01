@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
 
         if (!appSettings.getString("aiouserString")) {
             console.log("INIT: aiouserString not found ");
-            appSettings.setString("aiouserString", "ascii_dinosaur");
+            appSettings.setString("aiouserString", "");
         }
         if (!appSettings.getString("aiokeyString")) {
             console.log("INIT: aiokeyString not found ");
-            appSettings.setString("aiokeyString", "f41cdde938b14b28937b2c52ed23fa62");
+            appSettings.setString("aiokeyString", "");
         }
         if (!appSettings.getNumber("threshNumber")) {
             console.log("INIT: threshNumber not found ");

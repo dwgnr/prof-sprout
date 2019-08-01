@@ -27,7 +27,7 @@ export class OverviewComponent implements OnInit {
     requestCompleteCount = 0;
     errorMessage = "";
 
-    states = ["😄", "😊", "😊", "😊", "😊", "😐", "😟", "😢"];
+    states = ["😢", "😟", "😐", "😊", "😄"];
 
     ages = ["Jung", "Baby", "Mittelalt", "Alt", "Steinalt"];
 
@@ -36,15 +36,6 @@ export class OverviewComponent implements OnInit {
 
     plantSpecies = ["Sansevieria", "Elefantenfuß", "Efeutute", "Gummibaum", "Mimose",
         "Schusterpalme", "Drachenbaum", "Ufopflanze", "Sukkulente", "Kaktus", "Palme"];
-
-    // images = ["https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-philo.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-cactus.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-lily.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-jade.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-money-tree.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-umbrella.jpg",
-    //     "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-snake.jpg",
-    // ];
 
     images = [
         "res://plants/Pflanze_1.png",
@@ -97,15 +88,32 @@ export class OverviewComponent implements OnInit {
 
     loadPlantsFromJSON() {
         for (const p of plantsJSON.plants) {
+            const r = this.createRecommendation();
+
             const plant = new Plant(p.id, p.name, this.lastTemperature, this.lastHumidity, this.lastMoisture,
-                p.family, p.age, p.healthState, p.imageUrl, this.lastMoistureDate,
+                p.family, p.age, r.healthState, p.imageUrl, this.lastMoistureDate,
                 this.lastHumidityDate, this.lastTemperatureDate,
-                p.recommendation);
+                r.recommendation);
+
             this._plants.push(plant);
         }
     }
 
-    createPlants(N: number) {
+    createRecommendation() {
+        if (this.lastMoisture < 10) {
+            return {recommendation: 0, healthState: this.states[0]};
+        }
+        if (this.lastMoisture >= 10 && this.lastMoisture < 25) {
+            return {recommendation: 1, healthState: this.states[2]};
+        }
+        if (this.lastMoisture >= 25 && this.lastMoisture < 40) {
+            return {recommendation: 2, healthState: this.states[3]};
+        }
+
+        return {recommendation: 7, healthState: this.states[4]};
+    }
+
+    createPlantsRandom(N: number) {
 
         if (this.requestCompleteCount === 3) {
             for (let i = 0; i < N; i++) {
