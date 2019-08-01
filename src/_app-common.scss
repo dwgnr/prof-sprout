@@ -5,6 +5,12 @@
    font-family: "FontAwesome";
     color: $accent-dark;
 }
+
+.fa-head {
+  font-family: "FontAwesome";
+  color: $background-light;
+}
+
 // Common page class
 .page-content {
     .page-placeholder {
@@ -26,4 +32,21 @@
 //Action bar
 ActionBar .action-bar-title {
     horizontal-align: center;
+}
+
+// Custom styles
+.list-group {
+    .list-group-item {
+        padding: 0 0 8 0;
+        background-color: $blue-10;
+
+        .list-group-item-content {
+            padding: 8 15 4 15;
+            background-color: $background-light;
+        }
+
+        .fa {
+            color: $accent-dark;
+        }
+    }
 }

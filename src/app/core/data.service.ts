@@ -4,6 +4,7 @@ import { Observable } from "rxjs/";
 import "rxjs/add/operator/map";
 import * as appSettings from "tns-core-modules/application-settings";
 import { IBasicPost } from "~/app/models/basicPost.model";
+import { Plant } from "~/app/models/plant.model";
 
 // const httpOptions = {
 //     headers: new HttpHeaders({
@@ -18,6 +19,20 @@ const API_URL = "https://io.adafruit.com/api/v2/";
     providedIn: "root"
 })
 export class DataService {
+
+    states = ["😄", "😊", "😐", "😟", "😢"];
+
+    names = ["Alois", "Bertl", "Done", "Wastl", "Sepperl",
+        "Hias", "Hilde", "Bärbl", "Kathl", "Lisbeth", "Susi", "Wally"];
+
+    images = ["https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-philo.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-cactus.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-lily.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-jade.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-money-tree.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-umbrella.jpg",
+        "https://cdn.gearpatrol.com/wp-content/uploads/2019/01/10-Best-Indoor-Plants-Gear-Patrol-snake.jpg"
+    ];
 
     aiokey: string = "";
     aiouser: string = "";
@@ -124,6 +139,34 @@ export class DataService {
         this.getConfig();
 
         return this.http.get<any>(API_URL + this.aiouser + "/feeds/moisture/data/last", {headers: this.headers});
+    }
+
+    getLastHumidityPromise() {
+        return this.http.get<any>(API_URL + this.aiouser + "/feeds/humidity/data/last",
+            {headers: this.headers}).toPromise();
+    }
+
+    getLastTemperaturePromise() {
+        return this.http.get<any>(API_URL + this.aiouser + "/feeds/temperature/data/last",
+            {headers: this.headers}).toPromise();
+    }
+
+    getLastSoilMoisturePromise() {
+        return this.http.get<any>(API_URL + this.aiouser + "/feeds/moisture/data/last",
+            {headers: this.headers}).toPromise();
+    }
+
+    async getAllData() {
+
+        console.log("GET ALL");
+        this.getConfig();
+        const hum = await this.getLastHumidityPromise();
+        const moist = await this.getLastSoilMoisturePromise();
+        const temp = await this.getLastTemperaturePromise();
+
+        console.log(JSON.stringify(hum));
+
+        return {humidity: hum, moisture: moist, temperature: temp};
     }
 
     getWaterSwitch(): Observable<any> {

@@ -1,0 +1,15 @@
+{
+  "plants": [
+    {"id":0,"name":"Alois","family":"Bergpalme",
+      "healthState":"😊", "recommendation":7,
+      "age":"Jung","moisture":0,"humidity":50,
+      "temperature":25.7,"imageUrl":"res://pastelPlants/5.png",
+      "timeMoisture":"10 Juni 2019 10:11",
+      "timeHumidity":"10 Juni 2019 10:11","timeTemperature":"10 Juni 2019 10:11"
+    }
+  ],
+  "recommendations": ["Sofort gießen", "Zeitnah gießen",
+  "Bald gießen", "Luftfeuchtigkeit erhöhen",
+  "Luftfeuchtigkeit senken", "An kühleren Ort stellen",
+  "An wärmeren Ort stellen", "Alles wie gehabt"]
+}

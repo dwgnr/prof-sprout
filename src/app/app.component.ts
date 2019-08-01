@@ -9,7 +9,7 @@ import { isAndroid } from "tns-core-modules/platform";
     styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-    
+
     constructor() {
     }
 
@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
 
         if (!appSettings.getString("aiouserString")) {
             console.log("INIT: aiouserString not found ");
-            appSettings.setString("aiouserString", "default");
+            appSettings.setString("aiouserString", "");
         }
         if (!appSettings.getString("aiokeyString")) {
             console.log("INIT: aiokeyString not found ");
-            appSettings.setString("aiokeyString", "default");
+            appSettings.setString("aiokeyString", "");
         }
         if (!appSettings.getNumber("threshNumber")) {
             console.log("INIT: threshNumber not found ");
