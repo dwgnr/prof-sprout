@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="300" src="img/logo.png">
+  <img height="200" src="img/logo.png">
 </p>
 
 # A Nativescript App for managing IOT-Plants 
