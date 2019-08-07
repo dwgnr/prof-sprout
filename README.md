@@ -1,4 +1,9 @@
-# A Nativescript App for managing IOT-Plants
+# A Nativescript App for managing IOT-Plants 
+
+<p align="center">
+  <img width="300" height="300" src="img/logo.png">
+</p>
+
 ![logo](img/logo.png)
 
 ![device](img/device.png)
