@@ -1,4 +1,14 @@
 # A Nativescript App for managing IOT-Plants
+![device](img/logo.png)
+
+![device](img/device.png)
+
+![device](img/screen1.png)
+
+![device](img/screen2.png)
+
+![device](img/screen3.png)
+
 ## Build IOS
 - Open Sidekick and make sure a valid developer certificate is available under Build --> Configuration
 - Run `tns platform clean ios`
