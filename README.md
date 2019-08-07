@@ -1,13 +1,13 @@
 # A Nativescript App for managing IOT-Plants
-![device](img/logo.png)
+![logo](img/logo.png)
 
 ![device](img/device.png)
 
-![device](img/screen1.png)
+![screenshot1](img/screen1.png)
 
-![device](img/screen2.png)
+![screenshot2](img/screen2.png)
 
-![device](img/screen3.png)
+![screenshot3](img/screen3.png)
 
 ## Build IOS
 - Open Sidekick and make sure a valid developer certificate is available under Build --> Configuration
