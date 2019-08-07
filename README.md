@@ -1,18 +1,22 @@
-# A Nativescript App for managing IOT-Plants 
-
 <p align="center">
-  <img width="300" height="300" src="img/logo.png">
+  <img height="300" src="img/logo.png">
 </p>
 
-![logo](img/logo.png)
+# A Nativescript App for managing IOT-Plants 
 
 ![device](img/device.png)
 
-![screenshot1](img/screen1.png)
+<p align="center">
+  <img width="300" src="img/screen1.png">
+</p>
 
-![screenshot2](img/screen2.png)
+<p align="center">
+  <img width="300" src="img/screen2.png">
+</p>
 
-![screenshot3](img/screen3.png)
+<p align="center">
+  <img width="300" src="img/screen3.png">
+</p>
 
 ## Build IOS
 - Open Sidekick and make sure a valid developer certificate is available under Build --> Configuration
