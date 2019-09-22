@@ -3,19 +3,14 @@
 </p>
 
 # A Nativescript App for managing IOT-Plants 
-
-![device](img/device.png)
-
-<p align="center">
-  <img width="300" src="img/screen1.png">
+<p>
+  <img src="img/device.png" width="600" />
 </p>
 
-<p align="center">
-  <img width="300" src="img/screen2.png">
-</p>
-
-<p align="center">
-  <img width="300" src="img/screen3.png">
+<p float="middle">
+  <img src="img/screen1.png" width="400" />
+  <img src="img/screen2.png" width="400" />
+  <img src="img/screen3.png" width="400" />
 </p>
 
 ## Build IOS
