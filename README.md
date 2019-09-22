@@ -1,8 +1,9 @@
-# ProfSprout
-A Nativescript App for managing IOT-Plants 
-<p align="center">
+<p align="center" float="middle">
+    <h1>ProfSprout</h1>
   <img height="150" src="img/logo.png">
 </p>
+A Nativescript App for managing IOT-Plants 
+
 <p align="center">
   <img src="img/device.png" width="400" />
 </p>
