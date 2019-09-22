@@ -1,9 +1,9 @@
+#ProfSprout
 <p align="center">
-  <img height="200" src="img/logo.png">
+  <img height="150" src="img/logo.png">
 </p>
-
-# A Nativescript App for managing IOT-Plants 
-<p float="middle">
+A Nativescript App for managing IOT-Plants 
+<p align="center">
   <img src="img/device.png" width="400" />
 </p>
 
