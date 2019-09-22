@@ -4,13 +4,13 @@
 
 # A Nativescript App for managing IOT-Plants 
 <p float="middle">
-  <img src="img/device.png" width="600" />
+  <img src="img/device.png" width="400" />
 </p>
 
 <p float="middle">
-  <img src="img/screen1.png" width="100" />
-  <img src="img/screen2.png" width="100" />
-  <img src="img/screen3.png" width="100" />
+  <img src="img/screen1.png" width="200" />
+  <img src="img/screen2.png" width="200" />
+  <img src="img/screen3.png" width="200" />
 </p>
 
 ## Build IOS
