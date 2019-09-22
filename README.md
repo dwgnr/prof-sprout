@@ -1,16 +1,16 @@
-#ProfSprout
+# ProfSprout
+A Nativescript App for managing IOT-Plants 
 <p align="center">
   <img height="150" src="img/logo.png">
 </p>
-A Nativescript App for managing IOT-Plants 
 <p align="center">
   <img src="img/device.png" width="400" />
 </p>
 
-<p float="middle">
+<p align="center" float="middle">
   <img src="img/screen1.png" width="200" />
   <img src="img/screen2.png" width="200" />
-  <img src="img/screen3.png" width="200" />
+  <img src="img/screen3.png" width="180" />
 </p>
 
 ## Build IOS
